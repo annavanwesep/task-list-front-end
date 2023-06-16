@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
+import { useState } from 'react';
 
 const TASKS = [
   {
@@ -15,17 +16,63 @@ const TASKS = [
   },
 ];
 
-const App = () => {
+function App() {
+
+  const [tasks, setTasks] = useState(TASKS);
+
+  const updateTask = (taskId) => {
+
+    // create a new list of tasks with updated task value
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        task.isUpdated = !task.isUpdated;
+      }
+      return {...task};
+    });
+
+    setTasks(updatedTasks);
+  }
+
+  const updateDelete = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id !== taskId) {
+        return { ...task };
+      }
+    });
+
+    const filteredUpdatedData = updatedTasks.filter(function (element) {
+      return element !== undefined;
+    });
+
+    setTasks(filteredUpdatedData);
+  }
+
+  const toggleComplete = (taskId, newStatus) => {
+    const newTaskList = [];
+
+    let taskStatus = '';
+    if (newStatus === true) {
+      taskStatus = 'mark_complete';
+    } else if (newStatus === false) {
+      taskStatus = 'mark_incomplete';
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div>{<TaskList tasks={TASKS} />}</div>
+        <div>{<TaskList 
+        tasks={TASKS} 
+        updateTask={updateTask}
+        updateDelete={updateDelete}
+        toggleComplete={toggleComplete}
+        />}</div>
       </main>
     </div>
   );
-};
+}
 
 export default App;
