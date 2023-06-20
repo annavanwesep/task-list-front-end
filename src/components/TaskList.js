@@ -17,6 +17,7 @@ const TaskList = (props) => {
           isUpdated = { task.isUpdated}
           updateTask = {props.updateTask}
           updateDelete = {props.updateDelete}
+          // toggleComplete = {props.toggleComplete}
         />
       );
     });
@@ -34,7 +35,8 @@ TaskList.propTypes = {
     })
   ).isRequired,
   updateTask: PropTypes.func,
-  updateDelete: PropTypes.func
+  updateDelete: PropTypes.func,
+  toggleComplete: PropTypes.func
 };
 
 export default TaskList;

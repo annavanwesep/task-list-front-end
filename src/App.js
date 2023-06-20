@@ -25,10 +25,15 @@ function App() {
     // create a new list of tasks with updated task value
     const updatedTasks = tasks.map(task => {
       if (task.id === taskId) {
-        task.isUpdated = !task.isUpdated;
+      //   task.isUpdated = !task.isUpdated;
+      // }
+      return {
+        ...task,
+        isUpdated:!task.isUpdated
       }
-      return {...task};
-    });
+    }
+    return task;
+  });
 
     setTasks(updatedTasks);
   }
@@ -66,8 +71,7 @@ function App() {
       <main>
         <div>{<TaskList 
         tasks={TASKS} 
-        updateTask={updateTask}
-        updateDelete={updateDelete}
+        DeleteTask={updateDelete}
         toggleComplete={toggleComplete}
         />}</div>
       </main>
