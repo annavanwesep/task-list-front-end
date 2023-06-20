@@ -16,50 +16,27 @@ const TASKS = [
   },
 ];
 
-function App() {
+const App = () => {
+  
+  const [taskData, setTaskData] = useState(TASKS);
 
-  const [tasks, setTasks] = useState(TASKS);
-
-  const updateIsComplete = (taskId) => {
-
-    // create a new list of tasks with updated task value
-    const updatedTasks = tasks.map(task => {
-      if (task.id === taskId) {
-      //   task.isUpdated = !task.isUpdated;
-      // }
-      return {
-        ...task,
-        isComplete:!task.isComplete,
-      };
-    }
-    return task;
-  });
-
-    setTasks(updatedTasks);
+  const updateIsComplete = (taskId, completeStatus) => {
+    // console.log('UpdateIs complete is being called');
+    const newTaskData = taskData.map((task) => {
+      if (task.id === taskId){
+      const updatedStatusTask = {...task};
+      updatedStatusTask.isComplete = !completeStatus;
+      return updatedStatusTask;
+      } else return {...task};
+    });
+    setTaskData(newTaskData);
   };
 
-  const deleteTask = (taskId) => {
-    const updatedTasks = tasks.filter(task => task.id !== taskId);
-    setTasks(updatedTasks);
+  const deleteTask = (taskId) =>{
+
+    const newTaskData = taskData.filter(task => task.id !== taskId);
+    setTaskData(newTaskData);
   };
-
-  //   const filteredUpdatedData = updatedTasks.filter(function (element) {
-  //     return element !== undefined;
-  //   });
-
-  //   setTasks(filteredUpdatedData);
-  // }
-
-  // const toggleComplete = (taskId, newStatus) => {
-  //   const newTaskList = [];
-
-  //   let taskStatus = '';
-  //   if (newStatus === true) {
-  //     taskStatus = 'mark_complete';
-  //   } else if (newStatus === false) {
-  //     taskStatus = 'mark_incomplete';
-  //   }
-  // }
 
   return (
     <div className="App">
@@ -67,14 +44,12 @@ function App() {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div>{<TaskList 
-        tasks={TASKS} 
-        updateIsComplete={updateIsComplete}
-        deleteTask={deleteTask}
-        />}</div>
+        
+        <div><TaskList tasks={taskData} updateIsComplete={updateIsComplete} deleteTask={deleteTask} /></div>
       </main>
     </div>
   );
-}
+  };
+
 
 export default App;

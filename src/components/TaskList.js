@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import Task from './Task';
 import './TaskList.css';
 
-const TaskList = (props) => {
-  const tasks = props.tasks;
+const TaskList = ({tasks, updateIsComplete, deleteTask}) => {
 
   const getTaskListJSX = (tasks) => {
     return tasks.map((task) => {
@@ -14,8 +13,8 @@ const TaskList = (props) => {
           id={task.id}
           title={task.title}
           isComplete={task.isComplete}
-          updateIsComplete = { props.updateIsComplete}
-          DeleteTask = {props.deleteTask}
+          updateIsComplete={updateIsComplete}
+          deleteTask={deleteTask}
         />
       );
     });
