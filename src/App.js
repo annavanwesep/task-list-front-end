@@ -29,39 +29,37 @@ function App() {
       // }
       return {
         ...task,
-        isUpdated:!task.isUpdated
-      }
+        isComplete:!task.isComplete,
+      };
     }
     return task;
   });
 
     setTasks(updatedTasks);
-  }
+  };
 
-  const DeleteTask = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id !== taskId) {
-        return { ...task };
-      }
-    });
+  const deleteTask = (taskId) => {
+    const updatedTasks = tasks.filter(task => task.id !== taskId);
+    setTasks(updatedTasks);
+  };
 
-    const filteredUpdatedData = updatedTasks.filter(function (element) {
-      return element !== undefined;
-    });
+  //   const filteredUpdatedData = updatedTasks.filter(function (element) {
+  //     return element !== undefined;
+  //   });
 
-    setTasks(filteredUpdatedData);
-  }
+  //   setTasks(filteredUpdatedData);
+  // }
 
-  const toggleComplete = (taskId, newStatus) => {
-    const newTaskList = [];
+  // const toggleComplete = (taskId, newStatus) => {
+  //   const newTaskList = [];
 
-    let taskStatus = '';
-    if (newStatus === true) {
-      taskStatus = 'mark_complete';
-    } else if (newStatus === false) {
-      taskStatus = 'mark_incomplete';
-    }
-  }
+  //   let taskStatus = '';
+  //   if (newStatus === true) {
+  //     taskStatus = 'mark_complete';
+  //   } else if (newStatus === false) {
+  //     taskStatus = 'mark_incomplete';
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -72,7 +70,7 @@ function App() {
         <div>{<TaskList 
         tasks={TASKS} 
         updateIsComplete={updateIsComplete}
-        DeleteTask={DeleteTask}
+        deleteTask={deleteTask}
         />}</div>
       </main>
     </div>
