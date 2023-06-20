@@ -20,7 +20,7 @@ function App() {
 
   const [tasks, setTasks] = useState(TASKS);
 
-  const updateTask = (taskId) => {
+  const updateIsComplete = (taskId) => {
 
     // create a new list of tasks with updated task value
     const updatedTasks = tasks.map(task => {
