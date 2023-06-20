@@ -32,7 +32,6 @@ Task.propTypes = {
   isComplete: PropTypes.bool.isRequired,
   updateIsComplete:PropTypes.func.isRequired,
   deleteTask: PropTypes.func,
-  toggleComplete: PropTypes.func
 };
 
 export default Task;

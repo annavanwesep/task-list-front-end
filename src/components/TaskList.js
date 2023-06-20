@@ -14,10 +14,8 @@ const TaskList = (props) => {
           id={task.id}
           title={task.title}
           isComplete={task.isComplete}
-          isUpdated = { task.isUpdated}
-          updateTask = {props.updateTask}
-          updateDelete = {props.updateDelete}
-          // toggleComplete = {props.toggleComplete}
+          updateIsComplete = { updateIsComplete}
+          DeleteTask = {deleteTask}
         />
       );
     });
@@ -31,12 +29,10 @@ TaskList.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
-      isUpdated:PropTypes.bool
     })
   ).isRequired,
-  updateTask: PropTypes.func,
-  updateDelete: PropTypes.func,
-  toggleComplete: PropTypes.func
+  updateIsComplete:PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskList;

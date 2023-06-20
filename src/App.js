@@ -38,7 +38,7 @@ function App() {
     setTasks(updatedTasks);
   }
 
-  const updateDelete = (taskId) => {
+  const DeleteTask = (taskId) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id !== taskId) {
         return { ...task };
@@ -71,8 +71,8 @@ function App() {
       <main>
         <div>{<TaskList 
         tasks={TASKS} 
-        DeleteTask={updateDelete}
-        toggleComplete={toggleComplete}
+        updateIsComplete={updateIsComplete}
+        DeleteTask={DeleteTask}
         />}</div>
       </main>
     </div>
