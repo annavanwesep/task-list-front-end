@@ -14,15 +14,14 @@ const App = () => {
     axios
       .get(teamAPI)
       .then((response) => {
-         {
-          return {
-            
-          };
+        const initialTaskData = [];
+        response.data.forEach(task => {
+          initialTaskData.push(task);
         });
-        setTaskData();
+        setTaskData(initialTaskData);
       })
       .catch((error) => {
-        console.log(error);
+        console.log('error', error);
       });
   };
 
