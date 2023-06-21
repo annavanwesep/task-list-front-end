@@ -1,24 +1,33 @@
 import React from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const TASKS = [
-  {
-    id: 1,
-    title: 'Mow the lawn',
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: 'Cook Pasta',
-    isComplete: true,
-  },
-];
 
 const App = () => {
   
-  const [taskData, setTaskData] = useState(TASKS);
+  const [taskData, setTaskData] = useState([]);
+  const teamAPI = 'https://task-list-api-c17.herokuapp.com/tasks';
+
+  const fetchAllTasks = () => {
+    axios
+      .get(teamAPI)
+      .then((response) => {
+         {
+          return {
+            
+          };
+        });
+        setTaskData();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(fetchAllTasks, []);
+
 
   const updateIsComplete = (taskId, completeStatus) => {
     // console.log('UpdateIs complete is being called');
