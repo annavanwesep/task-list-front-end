@@ -17,8 +17,9 @@ const App = () => {
         // console.log(response.data);
         const tasksCopy = response.data.map((task) => {
           return {
-            ...task,
-            isComplete: task.is_complete,
+            id: task.id,
+            title: task.title,
+            isComplete : task.is_complete,
           };
         });
         setTaskData(tasksCopy);
@@ -33,16 +34,22 @@ const App = () => {
 
 
   const updateIsComplete = (taskId, completeStatus) => {
+    const taskCompletionStatus = completeStatus ? 'mark_incomplete':'mark_complete';
+    axios.patch(`${teamAPI}/${taskId}/${taskCompletionStatus}`)
     // console.log('UpdateIs complete is being called');
-    const newTaskData = taskData.map((task) => {
-      if (task.id === taskId){
-      const updatedStatusTask = {...task};
-      updatedStatusTask.isComplete = !completeStatus;
-      return updatedStatusTask;
-      } else return {...task};
-    });
-    setTaskData(newTaskData);
-  };
+    .then( () => {
+      const newTaskData = taskData.map((task) => {
+        if (task.id === taskId){
+        const updatedStatusTask = {...task};
+        updatedStatusTask.isComplete = !completeStatus;
+        return updatedStatusTask;
+        } return {...task};
+      });
+      setTaskData(newTaskData);
+    })
+    .catch((error) => {
+      console.log('error', error);
+  })
 
 
 
