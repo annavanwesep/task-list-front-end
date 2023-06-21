@@ -8,7 +8,7 @@ import axios from 'axios';
 const App = () => {
   
   const [taskData, setTaskData] = useState([]);
-  const teamAPI = 'https://abl-task-list.herokuapp.com/tasks';
+  const teamAPI = 'https://task-list-api-c17.onrender.com/';
 
   const fetchAllTasks = () => {
     axios
@@ -31,6 +31,7 @@ const App = () => {
   useEffect(fetchAllTasks, []);
 
 
+
   const updateIsComplete = (taskId, completeStatus) => {
     // console.log('UpdateIs complete is being called');
     const newTaskData = taskData.map((task) => {
@@ -47,9 +48,9 @@ const App = () => {
 
   const deleteTask = (taskId) => {
     axios
-      .delete(`https://task-list-api-c17.onrender.com/tasks/${taskId}`)
+      .delete(`${teamAPI}/${taskId}`)
       .then((response) => {
-        const newTaskData = taskData.filter(task => task.id !== taskId);
+        const newTaskData = response.data.filter(task => task.id !== taskId);
         setTaskData(newTaskData);
       })
       .catch((error) => {
@@ -59,7 +60,7 @@ const App = () => {
 
 
 
-  
+
 
   return (
     <div className="App">
