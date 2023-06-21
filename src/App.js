@@ -8,7 +8,7 @@ import axios from 'axios';
 const App = () => {
   
   const [taskData, setTaskData] = useState([]);
-  const teamAPI = 'https://task-list-api-c17.onrender.com/tasks';
+  const teamAPI = 'https://abl-task-list.herokuapp.com/tasks';
 
   const fetchAllTasks = () => {
     axios
@@ -43,11 +43,23 @@ const App = () => {
     setTaskData(newTaskData);
   };
 
-  const deleteTask = (taskId) =>{
 
-    const newTaskData = taskData.filter(task => task.id !== taskId);
-    setTaskData(newTaskData);
+
+  const deleteTask = (taskId) => {
+    axios
+      .delete(`https://task-list-api-c17.onrender.com/tasks/${taskId}`)
+      .then((response) => {
+        const newTaskData = taskData.filter(task => task.id !== taskId);
+        setTaskData(newTaskData);
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
   };
+
+
+
+  
 
   return (
     <div className="App">
