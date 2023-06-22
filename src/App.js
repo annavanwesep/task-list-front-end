@@ -8,7 +8,7 @@ import axios from 'axios';
 const App = () => {
   
   const [taskData, setTaskData] = useState([]);
-  const teamAPI = 'https://task-list-api-c17.onrender.com/';
+  const teamAPI = 'https://task-list-api-c17.onrender.com/tasks';
 
   const fetchAllTasks = () => {
     axios
