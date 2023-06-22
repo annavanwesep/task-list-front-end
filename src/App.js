@@ -35,7 +35,8 @@ const App = () => {
 
   const updateIsComplete = (taskId, completeStatus) => {
     const taskCompletionStatus = completeStatus ? 'mark_incomplete':'mark_complete';
-    axios.patch(`${teamAPI}/${taskId}/${taskCompletionStatus}`)
+    axios.
+    patch(`${teamAPI}/${taskId}/${taskCompletionStatus}`)
     // console.log('UpdateIs complete is being called');
     .then( () => {
       const newTaskData = taskData.map((task) => {
@@ -70,6 +71,7 @@ const App = () => {
 
 
 
+
   return (
     <div className="App">
       <header className="App-header">
@@ -77,11 +79,14 @@ const App = () => {
       </header>
       <main>
         
-        <div><TaskList tasks={taskData} updateIsComplete={updateIsComplete} deleteTask={deleteTask} /></div>
+        <div><TaskList 
+        tasks={taskData} 
+        updateIsComplete={updateIsComplete} 
+        deleteTask={deleteTask} /></div>
       </main>
     </div>
   );
-  };
+};
 
 
 export default App;
