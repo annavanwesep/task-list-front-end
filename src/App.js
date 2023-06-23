@@ -3,6 +3,7 @@ import TaskList from './components/TaskList.js';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import NewTaskForm from './components/NewTaskForm.js';
 
 
 const App = () => {
@@ -67,6 +68,16 @@ const App = () => {
       });
   };
 
+  const addTask = (formData) => {
+    axios
+    .post(teamAPI, formData)
+    .then(() => {
+      fetchAllTasks();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
 
 
 
@@ -83,6 +94,7 @@ const App = () => {
         tasks={taskData} 
         updateIsComplete={updateIsComplete} 
         deleteTask={deleteTask} /></div>
+        <NewTaskForm addTask={addTask} />
       </main>
     </div>
   );
